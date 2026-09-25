@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Government Schemes Info</title>
+  <style>
+    body { font-family: Arial; margin: 20px; }
+    .scheme { border: 1px solid #ccc; padding: 10px; margin: 10px 0; }
+  </style>
+</head>
+<body>
+  <h1>Government Schemes Search</h1>
+  <input type="text" id="searchBox" placeholder="Search scheme..." onkeyup="searchScheme()">
+  <div id="results"></div>
+
+  <h3>Made by: MADHVAN TALWAR, MANSI SADAVARTE, MANIYA SHARMA, RISHIKESH MALANI, VEDANT MANDLIK</h3>
+
+  <script>
+    const schemes = [
+      {name:"Pradhan Mantri Jan Dhan Yojana", start_year:2014, applicable_to:"All citizens", documents:"Aadhaar, PAN", official_site:"https://pmjdy.gov.in"},
+      {name:"Ayushman Bharat", start_year:2018, applicable_to:"Low-income families", documents:"Ration card, Aadhaar", official_site:"https://pmjay.gov.in"}
+      // Add more schemes here...
+    ];
+
+    function searchScheme() {
+      const query = document.getElementById('searchBox').value.toLowerCase();
+      const results = schemes.filter(s => s.name.toLowerCase().includes(query));
+      document.getElementById('results').innerHTML = results.map(s => `
+        <div class="scheme">
+          <h2>${s.name}</h2>
+          <p><b>Started:</b> ${s.start_year}</p>
+          <p><b>Applicable To:</b> ${s.applicable_to}</p>
+          <p><b>Documents:</b> ${s.documents}</p>
+          <p><a href="${s.official_site}" target="_blank">Official Site</a></p>
+        </div>
+      `).join('');
+    }
+  </script>
+</body>
+</html>
